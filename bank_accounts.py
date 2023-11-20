@@ -45,3 +45,12 @@ class BankAccount:
             print("Transfer successful.********** ✅\n")
         except BalanceException as error:
             print(f"\nTransfer interrupted: {error} ❌")
+
+
+# new class inherits from BankAccount
+class interestRewardsAcct(BankAccount):
+    # override the deposit method, and inherit the rest properties etc.
+    def deposit(self, amount):
+        self.balance = self.balance + (amount * 1.05)
+        print("\nDeposit to interestRewardsAcct successful.")
+        self.getBalance()
