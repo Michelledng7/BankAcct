@@ -54,3 +54,20 @@ class interestRewardsAcct(BankAccount):
         self.balance = self.balance + (amount * 1.05)
         print("\nDeposit to interestRewardsAcct successful.")
         self.getBalance()
+
+
+class SavingsAcct(interestRewardsAcct):
+    # add a property and override the withdraw method, and inherit the rest properties etc.
+    def __init__(self, initAmount, acctName):
+        super().__init__(initAmount, acctName)
+        self.fee = 5
+
+    # override the withdraw method
+    def withdraw(self, amount):
+        try:
+            self.viableTransaction(amount + self.fee)
+            self.balance = self.balance - (amount + self.fee)
+            print("\nWithdrawal successful.")
+            self.getBalance()
+        except BalanceException as error:
+            print(f"\nWithdraw interrupted: {error} ❌")
