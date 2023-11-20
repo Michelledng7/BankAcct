@@ -22,8 +22,8 @@ class BankAccount:
             return
         else:
             raise BalanceException(
-                print(
-                    f"\nSorry, account {self.name} has only a balance of ${self.balance:.2f}")
+                (
+                    f"Sorry, account {self.name} has only a balance of ${self.balance:.2f}")
             )
 
     def withdraw(self, amount):
@@ -33,4 +33,15 @@ class BankAccount:
             print("\nWithdrawal successful.")
             self.getBalance()
         except BalanceException as error:
-            print(f"\nTransaction interrupted: {error}")
+            print(f"\nWithdraw interrupted: {error}")
+
+    def transfer(self, amount, account):
+        try:
+            print(
+                f"\n**********Transfering ${amount: .2f} to {account.name} **********")
+            self.viableTransaction(amount)
+            self.withdraw(amount)
+            account.deposit(amount)
+            print("Transfer successful.********** ✅\n")
+        except BalanceException as error:
+            print(f"\nTransfer interrupted: {error} ❌")
